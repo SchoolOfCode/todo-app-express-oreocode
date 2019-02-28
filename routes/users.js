@@ -4,18 +4,9 @@ let bodyParser = require("body-parser");
 let connect = require("../connect");
 // // list all users
 let db;
-connect("Todo").then(database => {
-  db = database;
-  console.log("users");
-});
 
 connect("Todo").then(database => {
   db = database;
-});
-
-/* GET ALL users listing. */
-router.get("/", function(req, res, next) {
-  res.send("respond with a resource");
 });
 
 router.patch("/:userId", function(req, res, next) {
@@ -72,6 +63,11 @@ router.delete("/todo/:id", (req, res, next) => {
     if (err) throw err;
   });
   return res.json({ message: "entry deleted!" });
+});
+
+/* GET ALL users listing. */
+router.get("/", function(req, res, next) {
+  res.send("respond with a resource");
 });
 
 module.exports = router;
