@@ -14,19 +14,20 @@ router.get("/", function(req, res, next) {
   res.send("respond with a resource");
 });
 
-router.patch("/:id", function(req, res, next) {
+router.patch("/:userId", function(req, res, next) {
   //find id of post
-  var id = req.params;
+  var userId = req.params;
   //Connect to database
   let myData = db.collection("users");
   console.log(req.body);
   console.log("req body", req.body["description"]);
 
+  let criteria = { user: userId["userId"] };
+  console.log(userId);
+  let update = { $set: { description: req.body["description"] } };
+
   //amend note
-  myData.update(
-    { todos: { id: id } },
-    { $set: { todos: { description: req.body["description"] } } }
-  );
+  myData.update(criteria, update);
   return res.status(201).json({ message: "update completed" });
 });
 
