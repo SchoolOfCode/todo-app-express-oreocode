@@ -9,7 +9,7 @@ connect("Todo").then(database => {
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
-  res.render("index", { title: "Express" });
+  res.sendFile(path.join(__dirname, "..", "main.html"));
 });
 
 //login get and check user credentials

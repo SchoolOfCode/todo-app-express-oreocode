@@ -1,3 +1,6 @@
+const input = document.getElementById("input");
+let todoId = 1;
+
 // Create a "close" button and append it to each list item
 var myNodelist = document.getElementsByTagName("LI");
 var i;
@@ -28,6 +31,35 @@ list.addEventListener(
   },
   false
 );
+let sendNewToDo = () => {
+  let objToSend = {};
+  let date = new Date();
+  objToSend = {
+    id: todoId,
+    date: date.getDate(),
+    description: input.value,
+    status: true
+  };
+  console.log(objToSend);
+  fetch(`localhost:3000/users/todo/jaskaran`, {
+    method: "POST",
+    body: JSON.stringify({
+      title: "newToDo",
+      body: objToSend
+    }),
+    headers: {
+      Accept: "application/json",
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  })
+    .then((input.value = ""))
+    .then(todoId++)
+    .catch(err => console.error(err));
+};
+// const refreshToDo() => {
+// todoList.innerHtml=""
+
+// }
 
 // // Create a new list item when clicking on the "Add" button
 // function newElement() {
