@@ -5,7 +5,11 @@ let connect = require("../connect");
 // // list all users
 let db;
 
-/* GET users listing. */
+connect("Todo").then(database => {
+  db = database;
+});
+
+/* GET ALL users listing. */
 router.get("/", function(req, res, next) {
   let myData = db.collection("users");
   myData
@@ -16,17 +20,18 @@ router.get("/", function(req, res, next) {
 
 router.get("/todo/:userId", (req, res, next) => {
   let { userId } = req.params;
+  console.log(userId);
   let myData = db.collection("users");
+  query = { userId };
+  console.log(userId);
   myData
-    .find({ userId })
+    .find({ user: userId })
     .toArray()
     .then(data => res.json(data));
 });
 
 router.post("/todo/:userId", (req, res, next) => {
-  console.log("are we here?");
   let { userId } = req.params;
-  console.log(userId);
   let myData = db.collection("users");
   console.log(myData);
   let itemToInsert = req.body;
@@ -53,7 +58,3 @@ router.delete("/todo/:id", (req, res, next) => {
 });
 
 module.exports = router;
-
-connect("Todo").then(database => {
-  db = database;
-});
