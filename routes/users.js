@@ -4,6 +4,10 @@ let bodyParser = require("body-parser");
 let connect = require("../connect");
 // // list all users
 let db;
+connect("Todo").then(database => {
+  db = database;
+  console.log("users");
+});
 
 connect("Todo").then(database => {
   db = database;
@@ -11,11 +15,24 @@ connect("Todo").then(database => {
 
 /* GET ALL users listing. */
 router.get("/", function(req, res, next) {
+  res.send("respond with a resource");
+});
+
+router.patch("/:userId", function(req, res, next) {
+  //find id of post
+  var userId = req.params;
+  //Connect to database
   let myData = db.collection("users");
-  myData
-    .find({})
-    .toArray()
-    .then(data => res.json(data));
+  console.log(req.body);
+  console.log("req body", req.body["description"]);
+
+  let criteria = { user: userId["userId"] };
+  console.log(userId);
+  let update = { $set: { description: req.body["description"] } };
+
+  //amend note
+  myData.update(criteria, update);
+  return res.status(201).json({ message: "update completed" });
 });
 
 router.get("/todo/:userId", (req, res, next) => {
