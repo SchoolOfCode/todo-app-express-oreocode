@@ -41,7 +41,7 @@ let sendNewToDo = () => {
     status: true
   };
   console.log(objToSend);
-  fetch(`localhost:3000/users/todo/jaskaran`, {
+  fetch(`/users/todo/jaskaran`, {
     method: "POST",
     body: JSON.stringify({
       title: "newToDo",
@@ -87,4 +87,3 @@ let sendNewToDo = () => {
 //     };
 //   }
 // }
-
