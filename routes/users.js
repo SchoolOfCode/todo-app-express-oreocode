@@ -8,6 +8,7 @@ router.get("/", function(req, res, next) {
 
 router.patch("/", function(req, res, next) {
   let myData = db.collection("users");
+
   myData.patch(req.body, (err, result) => {
     if (err) throw err;
   });
