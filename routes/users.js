@@ -30,8 +30,7 @@ router.get("/todo/:userId", (req, res, next) => {
     .then(data => res.json(data));
 });
 
-router.post("/todo/:userId", (req, res, next) => {
-  let { userId } = req.params;
+router.post("/todo/", (req, res, next) => {
   let myData = db.collection("users");
   console.log(myData);
   let itemToInsert = req.body;
