@@ -1,6 +1,11 @@
 var express = require("express");
 var router = express.Router();
-const PORT = 8080;
+let connect = require("../connect");
+// show mardown here
+
+connect("Todo").then(database => {
+  db = database;
+});
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
@@ -8,10 +13,3 @@ router.get("/", function(req, res, next) {
 });
 
 module.exports = router;
-
-connect("test").then(database => {
-  db = database;
-  applicationCache.addEventListener(PORT, () =>
-    console.log("listening! on ${PORT}")
-  );
-});
