@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Page Title</title>
+    <title>To do list</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
   </head>
   <body>
     <div class="title">
@@ -15,15 +14,15 @@
       <span onclick="newEllement()" class="addBtn">Add</span>
     </div>
     <!-- <div id="myDIV" class="header">
-            <h2>My To Do List</h2>
-            <input type="text" id="myInput" placeholder="Title...">
-            <span onclick="newElement()" class="addBtn">Add</span>
-          </div> -->
+        <h2>My To Do List</h2>
+        <input type="text" id="myInput" placeholder="Title...">
+        <span onclick="newElement()" class="addBtn">Add</span>
+    </div> -->
 
-    <ul class="boxes" class="checked">
+    <ul id="myUL">
       <li>list item 1</li>
       <li>list item 1</li>
-      <li>list item 1</li>
+      <li class="checked">list item 1</li>
       <li>list item 1</li>
       <li>list item 1</li>
       <li>list item 1</li>
@@ -31,5 +30,6 @@
       <li>list item 1</li>
       <li>list item 1</li>
     </ul>
+    <script src="main.js"></script>
   </body>
 </html>
