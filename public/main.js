@@ -1,5 +1,13 @@
 const input = document.getElementById("input");
-let todoId = 1;
+const myUL = document.getElementById("myUL");
+
+function createNode(element) {
+  return document.createElement(element); // Create the type of element you pass in the parameters
+}
+
+function append(parent, el) {
+  return parent.appendChild(el); // Append the second parameter(element) to the first one
+}
 
 // Create a "close" button and append it to each list item
 var myNodelist = document.getElementsByTagName("LI");
@@ -35,13 +43,12 @@ let sendNewToDo = () => {
   let objToSend = {};
   let date = new Date();
   objToSend = {
-    id: todoId,
     date: date.getDate(),
     description: input.value,
     status: true
   };
   console.log(objToSend);
-  fetch(`/users/todo/jaskaran`, {
+  fetch(`http://localhost:3000/users/todo/jaskaran`, {
     method: "POST",
     body: JSON.stringify({
       title: "newToDo",
@@ -53,9 +60,40 @@ let sendNewToDo = () => {
     }
   })
     .then((input.value = ""))
-    .then(todoId++)
+    .then((myUL.innerHTML = ""))
+    .then(getAllTodos)
     .catch(err => console.error(err));
 };
+
+let getAllTodos = () => {
+  fetch(`http://localhost:3000/users/todo/`, { mode: "cors" })
+    .then(function(response) {
+      return response.json();
+    })
+    .then(data =>
+      data.map(item => {
+        let newLI = createNode("LI");
+        try {
+          newLI.innerText = item.body.description;
+          append(myUL, newLI);
+        } catch (err) {
+          console.log(err);
+          newLI.innerText = item.body;
+          append(myUL, newLI);
+        }
+      })
+    );
+};
+
+let deleteTodo = () => {
+  // id needs to be set 1) get id 2) send id
+  fetch(`http://localhost:3000/users/todo/jaskaran`, {
+    method: "DELETE"
+  });
+};
+
+getAllTodos();
+
 // const refreshToDo() => {
 // todoList.innerHtml=""
 
