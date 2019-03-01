@@ -61,7 +61,7 @@ router.post("/todo/:userId", (req, res, next) => {
 router.delete("/todo/:id", (req, res, next) => {
   let myData = db.collection("users");
   let { id } = req.params;
-  myData.deleteOne(id, function(err, Obj) {
+  myData.deleteOne({ id: id }, function(err, Obj) {
     if (err) throw err;
   });
   return res.json({ message: "entry deleted!" });

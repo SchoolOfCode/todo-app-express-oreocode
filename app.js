@@ -4,7 +4,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-var indexRouter = require("./routes/index");
+// var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var newRouter = require("./routes/new");
 
@@ -24,6 +24,16 @@ app.use(function(req, res, next) {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
+  // res.header(
+  //   "Access-Control-Allow-Methods",
+  //   "POST, PUT, GET, OPTIONS, DELETE, PATCH"
+  // );
+  // res.header("Allow", "HEAD,GET,OPTIONS,PUT,PATCH");
+  // res.header(
+  //   "Access-Control-Allow-Headers",
+  //   "Content-Type, Accept, Authorization"
+  // );
+  // res.header("Access-Control-Allow-Credentials", "true");
   next();
 });
 
